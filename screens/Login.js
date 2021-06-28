@@ -17,7 +17,7 @@ import {
 import { SIZES, FONTS, COLORS, images, icons } from "../constants";
 import { LinearGradient } from "expo-linear-gradient";
 
-const SignUp = ({ navigation }) => {
+const Login = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
   function renderButton() {
     return (
@@ -32,7 +32,7 @@ const SignUp = ({ navigation }) => {
           }}
           onPress={() => navigation.navigate("Home")}
         >
-          <Text style={{ color: COLORS.white, ...FONTS.h3 }}>Sign Up</Text>
+          <Text style={{ color: COLORS.white, ...FONTS.h3 }}>Login</Text>
         </TouchableOpacity>
       </View>
     );
@@ -214,4 +214,4 @@ const SignUp = ({ navigation }) => {
   );
 };
 
-export default SignUp;
+export default Login;

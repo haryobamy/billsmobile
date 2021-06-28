@@ -8,12 +8,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { COLORS, SIZES, FONTS, icons, images } from "../constants";
+import { LinearGradient } from "expo-linear-gradient";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const featuresData = [
     {
       id: 1,
-      icon: icons.reload,
+      icon: icons.phone,
       color: COLORS.purple,
       backgroundColor: COLORS.lightpurple,
       description: "Top Up",
@@ -37,7 +38,7 @@ const Home = () => {
       icon: icons.wallet,
       color: COLORS.red,
       backgroundColor: COLORS.lightRed,
-      description: "Wallet",
+      description: "Cable",
     },
     {
       id: 5,
@@ -51,11 +52,11 @@ const Home = () => {
       icon: icons.game,
       color: COLORS.primary,
       backgroundColor: COLORS.lightGreen,
-      description: "Games",
+      description: "Education",
     },
     {
       id: 7,
-      icon: icons.phone,
+      icon: icons.reload,
       color: COLORS.red,
       backgroundColor: COLORS.lightRed,
       description: "Mobile Prepaid",
@@ -98,13 +99,48 @@ const Home = () => {
 
   const [features, setFeatures] = React.useState(featuresData);
   const [specialPromos, setSpecialPromos] = React.useState(specialPromoData);
+  const [showBalance, setShowBalance] = React.useState(false);
+
+  const handlePress = (item) => {
+    console.log(item.description);
+    if (item.description == "Top Up") {
+      navigation.navigate("TopUp", { item });
+    } else if (item.description == "Transfer") {
+      navigation.navigate("Transfer", { item });
+    } else if (item.description == "Internet") {
+      navigation.navigate("Internet", { item });
+    } else if (item.description == "Cable") {
+      navigation.navigate("Cable", { item });
+    } else if (item.description == "Cable") {
+      navigation.navigate("Cable", { item });
+    }
+  };
 
   function renderHeader() {
     return (
       <View style={{ flexDirection: "row", marginVertical: SIZES.padding * 2 }}>
+        <Image
+          source={images.user}
+          resizeMode="cover"
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: 20,
+            marginRight: SIZES.base * 2,
+            marginTop: SIZES.base,
+          }}
+        />
         <View style={{ flex: 1 }}>
           <Text style={{ ...FONTS.h1 }}>Hello!</Text>
-          <Text style={{ ...FONTS.body2, color: COLORS.gray }}>Badmus Ola</Text>
+          <Text
+            style={{
+              ...FONTS.body2,
+              color: COLORS.gray,
+              textTransform: "capitalize",
+            }}
+          >
+            Badmus ayo
+          </Text>
         </View>
 
         <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -128,8 +164,8 @@ const Home = () => {
             <View
               style={{
                 position: "absolute",
-                top: -5,
-                right: -5,
+                top: 5,
+                right: 5,
                 height: 10,
                 width: 10,
                 backgroundColor: COLORS.red,
@@ -146,11 +182,107 @@ const Home = () => {
     return (
       <View
         style={{
-          height: 120,
+          height: 150,
           borderRadius: 20,
         }}
       >
-        <Image
+        <LinearGradient
+          colors={[COLORS.darkBlue, COLORS.blue]} // needs attention lime or blue
+          style={{ flex: 1, borderRadius: SIZES.base }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              marginVertical: SIZES.padding,
+              marginHorizontal: SIZES.padding * 2,
+            }}
+          >
+            <View style={{ flex: 1 }}>
+              <Text style={{ ...FONTS.body2, color: COLORS.lightGray }}>
+                Account Balance
+              </Text>
+              {!showBalance ? (
+                <Text
+                  style={{
+                    ...FONTS.h3,
+                    color: COLORS.white,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: 8,
+                  }}
+                >
+                  ₦ 250,0000.34
+                </Text>
+              ) : (
+                <Text
+                  style={{
+                    ...FONTS.h3,
+                    color: COLORS.white,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: 8,
+                  }}
+                >
+                  N XXXXXXXX
+                </Text>
+              )}
+            </View>
+            <TouchableOpacity onPress={() => setShowBalance(!showBalance)}>
+              <Image
+                source={showBalance ? icons.disable_eye : icons.eye}
+                resizeMode="contain"
+                style={{
+                  width: 25,
+                  height: 25,
+                  tintColor: COLORS.lightGray,
+                }}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              marginVertical: SIZES.padding,
+              marginHorizontal: SIZES.padding * 2,
+              justifyContent: "flex-end",
+            }}
+          >
+            <TouchableOpacity
+              style={{ flexDirection: "row" }}
+              onPress={() => navigation.navigate("Transaction")}
+            >
+              <View>
+                <Text style={{ ...FONTS.body3, color: COLORS.green }}>
+                  Last Transaction
+                </Text>
+                <Text
+                  style={{
+                    color: COLORS.white,
+                    ...FONTS.body4,
+                  }}
+                >
+                  2 days ago
+                </Text>
+              </View>
+              <View>
+                <Image
+                  source={icons.right_arrow}
+                  style={{
+                    width: 15,
+                    height: 15,
+                    tintColor: COLORS.white,
+
+                    marginLeft: SIZES.padding,
+                    marginTop: 10,
+                  }}
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </LinearGradient>
+
+        {/* <Image
           source={images.banner}
           resizeMode="cover"
           style={{
@@ -158,7 +290,7 @@ const Home = () => {
             height: "100%",
             borderRadius: 20,
           }}
-        />
+        /> */}
       </View>
     );
   }
@@ -177,7 +309,9 @@ const Home = () => {
           width: 60,
           alignItems: "center",
         }}
-        onPress={() => console.log(item.description)}
+        // onPress={() => console.log(item.description)}
+        // onPress={() => navigation.navigate("TopUp", { item })}
+        onPress={() => handlePress(item)}
       >
         <View
           style={{
@@ -200,7 +334,7 @@ const Home = () => {
             }}
           />
         </View>
-        <Text style={{ textAlign: "center", flexWrap: "wrap", ...FONTS.body4 }}>
+        <Text style={{ textAlign: "center", flexWrap: "wrap", ...FONTS.body5 }}>
           {item.description}
         </Text>
       </TouchableOpacity>

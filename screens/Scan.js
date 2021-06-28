@@ -185,26 +185,30 @@ const Scan = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.transparent }}>
-      <RNCamera
-        ref={(ref) => {
-          this.camera = ref;
-        }}
+      {/* <RNCamera
+        // ref={(ref) => {
+        //   this.camera = ref;
+        // }}
         style={{ flex: 1 }}
         captureAudio={false}
-        type={RNCamera.Constants.Type.back}
-        flashMode={RNCamera.Constants.FlashMode.off}
-        onBarCodeRead={onBarCodeRead}
-        androidCameraPermissionOptions={{
-          title: "Permission to use camera",
-          message: "Camera is required for barcode scanning",
-          buttonPositive: "OK",
-          buttonNegative: "Cancel",
-        }}
+        // type={RNCamera.Constants.Type.back}
+        // flashMode={RNCamera.Constants.FlashMode.off}
+        // onBarCodeRead={onBarCodeRead}
+        // androidCameraPermissionOptions={{
+        //   title: "Permission to use camera",
+        //   message: "Camera is required for barcode scanning",
+        //   buttonPositive: "OK",
+        //   buttonNegative: "Cancel",
+        // }}
       >
         {renderHeader()}
         {renderScanFocus()}
         {renderPaymentMethods()}
-      </RNCamera>
+      </RNCamera> */}
+
+      {renderHeader()}
+      {renderScanFocus()}
+      {renderPaymentMethods()}
     </View>
   );
 };
