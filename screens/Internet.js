@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  Platform,
   SectionList,
   Modal,
   TouchableWithoutFeedback,

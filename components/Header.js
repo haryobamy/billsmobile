@@ -6,11 +6,12 @@ import { COLORS, FONTS, icons, images, SIZES } from "../constants";
 const HeaderBar = ({ right, label, labelColor }) => {
   const navigation = useNavigation();
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View style={{ flexDirection: "row", marginTop: SIZES.padding * 3 }}>
       <TouchableOpacity
         style={{
           width: 50,
           paddingLeft: SIZES.padding * 2,
+
           justifyContent: "center",
         }}
         onPress={() => navigation.goBack()}
