@@ -24,6 +24,10 @@ const smile = require("../assets/icons/smile.jpg");
 const etisalat = require("../assets/icons/9mobile.jpg");
 
 export default {
+  // tv,
+  // education,
+  // elect,
+  //
   airtel,
   etisalat,
   glo,

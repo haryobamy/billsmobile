@@ -12,9 +12,14 @@ import {
   Transaction,
   Internet,
   Login,
+  Cable,
+  Profile,
+  Education,
+  Electricity,
 } from "./screens";
 
 import Tabs from "./navigation/tabs";
+import Drawers from "./navigation/drawers";
 
 const theme = {
   ...DefaultTheme,
@@ -39,11 +44,16 @@ const App = () => {
         <Stack.Screen name="Transfer" component={Transfer} />
         <Stack.Screen name="Internet" component={Internet} />
         <Stack.Screen name="Transaction" component={Transaction} />
+        <Stack.Screen name="Cable" component={Cable} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Electricity" component={Electricity} />
+        <Stack.Screen name="Education" component={Education} />
 
         {/* Tabs */}
         <Stack.Screen name="Home" component={Tabs} />
         {/* <Stack.Screen name="Scan" component={Scan}/> */}
+        {/* Drawer */}
+        <Stack.Screen name="Scan" component={Drawers} />
       </Stack.Navigator>
     </NavigationContainer>
   );

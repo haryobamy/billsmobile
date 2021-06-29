@@ -35,22 +35,22 @@ const Home = ({ navigation }) => {
     },
     {
       id: 4,
-      icon: icons.wallet,
-      color: COLORS.red,
-      backgroundColor: COLORS.lightRed,
+      icon: images.tv,
+      // color: COLORS.white,
+      backgroundColor: COLORS.lightRed, // need to be fixed
       description: "Cable",
     },
     {
       id: 5,
-      icon: icons.bill,
-      color: COLORS.yellow,
+      icon: images.elect,
+      // color: COLORS.white,
       backgroundColor: COLORS.lightyellow,
-      description: "Bill",
+      description: "Electricity",
     },
     {
       id: 6,
-      icon: icons.game,
-      color: COLORS.primary,
+      icon: images.education,
+      // color: COLORS.white,
       backgroundColor: COLORS.lightGreen,
       description: "Education",
     },
@@ -111,8 +111,12 @@ const Home = ({ navigation }) => {
       navigation.navigate("Internet", { item });
     } else if (item.description == "Cable") {
       navigation.navigate("Cable", { item });
-    } else if (item.description == "Cable") {
-      navigation.navigate("Cable", { item });
+    } else if (item.description == "Education") {
+      navigation.navigate("Education", { item });
+    } else if (item.description == "Electricity") {
+      navigation.navigate("Electricity", { item });
+    } else if (item.description == "More") {
+      navigation.navigate("Login", { item });
     }
   };
 

@@ -13,52 +13,36 @@ import {
   TouchableWithoutFeedback,
   SafeAreaView,
   FlatList,
-  VirtualizedList,
 } from "react-native";
 import { BuyButton, HeaderBar } from "../components";
-import * as Contacts from "expo-contacts";
 
 import { SIZES, FONTS, COLORS, images, icons } from "../constants";
 import { LinearGradient } from "expo-linear-gradient";
 
-const Internet = ({ navigation, route }) => {
+const Cable = ({ navigation, route }) => {
   const data = [
     {
       id: 1,
-      img: icons.etisalat,
-      title: "9MOBILE",
+      img: images.dstv,
+      title: "dstv",
 
       amount: 480,
-      backgroundColor: COLORS.black,
+      backgroundColor: COLORS.white,
     },
     {
       id: 2,
-      img: icons.airtel,
-      title: "AIRTEL",
+      img: images.gotv,
+      title: "gotv",
       amount: 2000,
       backgroundColor: COLORS.white,
     },
     {
       id: 3,
-      img: icons.glo,
-      title: "GLO",
+      img: images.startimes,
+      title: "startimes",
       amount: 3080,
 
       backgroundColor: COLORS.white,
-    },
-    {
-      id: 4,
-      img: icons.mtn,
-      title: "MTN",
-      amount: 4648,
-      backgroundColor: COLORS.white,
-    },
-    {
-      id: 5,
-      img: icons.smile,
-      title: "SMILE",
-      amount: 460,
-      backgroundColor: COLORS.black,
     },
   ];
 
@@ -121,82 +105,13 @@ const Internet = ({ navigation, route }) => {
     },
   ];
   const [product, setProduct] = React.useState(null);
-  const [modalVisible, setModalVisible] = React.useState(false);
-  const [Plans, setPlans] = React.useState([]);
-  const [selectedPlan, setSelectedPlan] = React.useState(null);
   const [network, setNetwork] = React.useState(data);
-
   const [features, setFeatures] = React.useState(featuresData);
-
-  const [contacts, setContacts] = React.useState([]);
-
-  const getContact = () => {
-    (async () => {
-      const { status } = await Contacts.requestPermissionsAsync();
-      if (status === "granted") {
-        const { data } = await Contacts.getContactsAsync({
-          fields: [Contacts.Fields.PhoneNumbers],
-        });
-
-        if (data.length > 0) {
-          setContacts(data);
-        }
-      }
-    })();
-  };
-
-  React.useEffect(() => {
-    // setDummy(data);
-    // let planData = dummy.map((item) => {
-    //   return {
-    //     id: item.id,
-    //     network: item.title,
-    //     image: item.img,
-    //   };
-    // });
-    // setPlans(planData);
-    // console.log(planData);
-    // if (planData.length > 0) {
-    //   let defaultData = planData.filter((a) => a.network == "MTN");
-    // }
-    // if (defaultData.length > 0) {
-    //   setSelectedPlan(defaultData[0]);
-    // }
-  }, []);
 
   React.useEffect(() => {
     let { item } = route.params;
     setProduct(item);
   }, []);
-
-  // function renderContact() {
-  //   return (
-  //     <Modal animationType="slide" transparent={true} visible={modalVisible}>
-  //       <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
-  //         <View
-  //           style={{
-  //             flex: 1,
-  //             backgroundColor: "#fff",
-  //             alignItems: "center",
-  //             justifyContent: "center",
-  //           }}
-  //         >
-  //           <FlatList
-  //             data={contacts}
-  //             renderItem={({ item }) => {
-  //               return (
-  //                 <Text>{`${item.name} (${
-  //                   item.phoneNumbers ? item.phoneNumbers[0].number : ""
-  //                 })`}</Text>
-  //               );
-  //             }}
-  //           />
-  //         </View>
-  //       </TouchableWithoutFeedback>
-  //     </Modal>
-  //   );
-  // }
-
   function renderHeader() {
     return (
       <HeaderBar
@@ -211,7 +126,7 @@ const Internet = ({ navigation, route }) => {
     const Header = () => (
       <View style={{ marginBottom: SIZES.base, marginTop: SIZES.padding }}>
         <Text style={{ ...FONTS.body3, color: COLORS.white }}>
-          Select network provider
+          Select Service Provider
         </Text>
       </View>
     );
@@ -220,7 +135,7 @@ const Internet = ({ navigation, route }) => {
         style={{
           width: 60,
           alignItems: "center",
-          marginLeft: 30,
+          marginLeft: 60,
         }}
         // onPress={() => console.log(item.description)}
         // onPress={() => navigation.navigate("TopUp", { item })}
@@ -250,9 +165,9 @@ const Internet = ({ navigation, route }) => {
             }}
           />
         </View>
-        <Text style={{ textAlign: "center", flexWrap: "wrap", ...FONTS.body5 }}>
+        {/* <Text style={{ textAlign: "center", flexWrap: "wrap", ...FONTS.body5 }}>
           {item.description}
-        </Text>
+        </Text> */}
       </TouchableOpacity>
     );
 
@@ -272,7 +187,6 @@ const Internet = ({ navigation, route }) => {
           contentContainerStyle={{
             alignItems: "center",
             // marginHorizontal: SIZES.padding * 6,
-            marginLeft: -30,
           }}
           showsHorizontalScrollIndicator={false}
         />
@@ -288,6 +202,36 @@ const Internet = ({ navigation, route }) => {
           marginHorizontal: SIZES.padding * 3,
         }}
       >
+        {/* meter number */}
+        {/* userName */}
+        <View
+          style={{
+            marginTop: SIZES.padding * 2,
+          }}
+        >
+          <Text style={{ color: COLORS.lightGray, ...FONTS.body3 }}>
+            Smart Card Number
+          </Text>
+          <TextInput
+            style={{
+              marginVertical: SIZES.padding,
+              borderBottomColor: COLORS.white,
+              borderBottomWidth: 1,
+              height: 40,
+              color: COLORS.white,
+              ...FONTS.body3,
+            }}
+            placeholder="Enter Smart Card number"
+            placeholderTextColor={COLORS.white}
+            selectionColor={COLORS.white}
+            textContentType="telephoneNumber"
+            keyboardType="numeric"
+          />
+        </View>
+        {/* network logo for network selection */}
+        {renderNetwork()}
+        {renderPlans()}
+        {/* phone number */}
         <View
           style={{
             marginTop: SIZES.padding * 2,
@@ -319,7 +263,7 @@ const Internet = ({ navigation, route }) => {
               height: 30,
               bottom: 10,
             }}
-            onPress={getContact}
+            // onPress={getContact}
           >
             <Image
               source={icons.user}
@@ -333,9 +277,6 @@ const Internet = ({ navigation, route }) => {
             />
           </TouchableOpacity>
         </View>
-        {/* network logo for network selection */}
-        {renderNetwork()}
-        {renderPlans()}
       </View>
     );
   }
@@ -367,77 +308,64 @@ const Internet = ({ navigation, route }) => {
       </View>
     );
     const renderItem = ({ item }) => (
-      <TouchableOpacity
-        style={{
-          // marginBottom: SIZES.padding * 2,
-          width: 60,
-          alignItems: "center",
-          marginHorizontal: SIZES.radius,
-        }}
-        // onPress={() => console.log(item.description)}
-        // onPress={() => navigation.navigate("TopUp", { item })}
-        onPress={() => console.log(item)}
-      >
-        <View
+      <View>
+        <TouchableOpacity
           style={{
-            height: 90,
-            width: 90,
-
-            marginBottom: 20,
-            borderRadius: 20,
-            backgroundColor: COLORS.gray,
-            border: "3px solid white",
+            // marginBottom: SIZES.padding * 2,
+            width: 60,
             alignItems: "center",
-            justifyContent: "center",
+            marginHorizontal: SIZES.radius,
           }}
+          // onPress={() => console.log(item.description)}
+          // onPress={() => navigation.navigate("TopUp", { item })}
+          onPress={() => console.log(item)}
         >
-          <View>
-            <Text
-              style={{
-                ...FONTS.h2,
-                fontWeight: "bold",
-                textAlign: "center",
-                color: COLORS.black,
-              }}
-            >
-              100MB
-            </Text>
-            <Text
-              style={{
-                ...FONTS.body4,
-                textAlign: "center",
-                color: COLORS.lightGray,
-              }}
-            >
-              2 days
-            </Text>
-            <Text
-              style={{
-                ...FONTS.body4,
-                textAlign: "center",
-                flexWrap: "wrap",
-                color: COLORS.lightGray,
-              }}
-            >
-              pay ₦25000
-            </Text>
-          </View>
-          {/* <Image
-            source={item.icons}
-            resizeMode="contain"
+          <View
             style={{
-              height: 40,
-              width: 40,
-              borderRadius: 45,
+              height: 120,
+              width: 120,
 
-              // tintColor: item.color,
+              marginBottom: 20,
+              borderRadius: 20,
+              backgroundColor: COLORS.gray,
+              border: "3px solid white",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-          /> */}
-        </View>
-        {/* <Text style={{ textAlign: "center", flexWrap: "wrap", ...FONTS.body5 }}>
-          {item.description}
-        </Text> */}
-      </TouchableOpacity>
+          >
+            <View>
+              <Text
+                style={{
+                  ...FONTS.h5,
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  color: COLORS.black,
+                }}
+              >
+                DSTv Compact + French Touch
+              </Text>
+              <Text
+                style={{
+                  ...FONTS.body4,
+                  textAlign: "center",
+                  color: COLORS.lightGray,
+                }}
+              ></Text>
+              <Text
+                style={{
+                  ...FONTS.body4,
+                  textAlign: "center",
+                  flexWrap: "wrap",
+                  color: COLORS.lightGray,
+                }}
+              >
+                pay ₦25000
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        {/* view all section */}
+      </View>
     );
 
     const Footer = () => {
@@ -469,11 +397,9 @@ const Internet = ({ navigation, route }) => {
         renderItem={renderItem}
         style={{ marginTop: SIZES.padding * 2 }}
         ListFooterComponent={Footer}
-        pagingEnabled={true}
       />
     );
   }
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : null}
@@ -484,20 +410,15 @@ const Internet = ({ navigation, route }) => {
         style={{ flex: 1 }}
       >
         {renderHeader()}
-        {renderForm()}
 
-        {renderButton()}
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {renderForm()}
 
-        {/* <ScrollView>
-          
-
-          
-
-          
-        </ScrollView> */}
+          {renderButton()}
+        </ScrollView>
       </LinearGradient>
     </KeyboardAvoidingView>
   );
 };
 
-export default Internet;
+export default Cable;

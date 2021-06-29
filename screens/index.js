@@ -7,6 +7,10 @@ import Internet from "./Internet";
 import Transfer from "./Transfer";
 import TopUp from "./TopUp";
 import Login from "./Login";
+import Cable from "./Cable";
+import Setting from "./Setting";
+import Education from "./Education";
+import Electricity from "./Electricity";
 
 export {
   Signup,
@@ -17,5 +21,9 @@ export {
   TopUp,
   Internet,
   Transfer,
+  Cable,
   Login,
+  Setting,
+  Education,
+  Electricity,
 };

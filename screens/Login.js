@@ -45,31 +45,7 @@ const Login = ({ navigation }) => {
           marginHorizontal: SIZES.padding * 3,
         }}
       >
-        {/* userName */}
-        <View
-          style={{
-            marginTop: SIZES.padding * 2,
-          }}
-        >
-          <Text style={{ color: COLORS.lightGray, ...FONTS.body3 }}>
-            Username
-          </Text>
-          <TextInput
-            style={{
-              marginVertical: SIZES.padding,
-              borderBottomColor: COLORS.white,
-              borderBottomWidth: 1,
-              height: 40,
-              color: COLORS.white,
-              ...FONTS.body3,
-            }}
-            placeholder="Enter username"
-            placeholderTextColor={COLORS.white}
-            selectionColor={COLORS.white}
-          />
-        </View>
-
-        {/* Phone number */}
+        {/* Email*/}
         <View
           style={{
             marginTop: SIZES.padding,
@@ -135,6 +111,14 @@ const Login = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
+        <View style={{ flexDirection: "row", marginTop: SIZES.base }}>
+          <Text style={{ flex: 1, ...FONTS.body3 }}>
+            Don't have an account yet?
+          </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+            <Text style={{ ...FONTS.body3 }}>Sign up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -187,7 +171,7 @@ const Login = ({ navigation }) => {
             ...FONTS.h4,
           }}
         >
-          Signup
+          Login
         </Text>
         <View></View>
       </TouchableOpacity>

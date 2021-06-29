@@ -1,8 +1,7 @@
 import React from "react";
+import { Text, TouchableOpacity } from "react-native";
 
-import { View, Text, Image, TouchableOpacity } from "react-native";
-
-const Profile = ({ navigation }) => {
+const Setting = ({ navigation }) => {
   return (
     <TouchableOpacity>
       <Text
@@ -12,10 +11,10 @@ const Profile = ({ navigation }) => {
           justifyContent: "center",
         }}
       >
-        profile screen
+        Setting screen
       </Text>
     </TouchableOpacity>
   );
 };
 
-export default Profile;
+export default Setting;

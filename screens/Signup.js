@@ -135,6 +135,58 @@ const SignUp = ({ navigation }) => {
             />
           </TouchableOpacity>
         </View>
+        {/* confirm password */}
+
+        <View
+          style={{
+            marginTop: SIZES.padding,
+          }}
+        >
+          <Text style={{ color: COLORS.lightGray, ...FONTS.body3 }}>
+            password
+          </Text>
+          <TextInput
+            style={{
+              marginVertical: SIZES.padding,
+              borderBottomColor: COLORS.white,
+              borderBottomWidth: 1,
+              height: 40,
+              color: COLORS.white,
+              ...FONTS.body3,
+            }}
+            placeholder="Confirm password"
+            placeholderTextColor={COLORS.white}
+            selectionColor={COLORS.white}
+            secureTextEntry={!showPassword}
+          />
+          <TouchableOpacity
+            style={{
+              position: "absolute",
+              right: 0,
+              width: 30,
+              height: 30,
+              bottom: 10,
+            }}
+            onPress={() => setShowPassword(!showPassword)}
+          >
+            <Image
+              source={showPassword ? icons.disable_eye : icons.eye}
+              style={{
+                width: 20,
+                height: 20,
+                tintColor: COLORS.white,
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={{ flexDirection: "row", marginTop: SIZES.base }}>
+          <Text style={{ flex: 1, ...FONTS.body3 }}>
+            Already have an account yet?
+          </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <Text style={{ ...FONTS.body3 }}>Login</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }

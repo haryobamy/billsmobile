@@ -1,8 +1,7 @@
 import React from "react";
+import { Text, TouchableOpacity } from "react-native";
 
-import { View, Text, Image, TouchableOpacity } from "react-native";
-
-const Profile = ({ navigation }) => {
+const Education = ({ navigation }) => {
   return (
     <TouchableOpacity>
       <Text
@@ -11,11 +10,12 @@ const Profile = ({ navigation }) => {
           alignItems: "center",
           justifyContent: "center",
         }}
+        onPress={() => navigation.goBack()}
       >
-        profile screen
+        Education screen
       </Text>
     </TouchableOpacity>
   );
 };
 
-export default Profile;
+export default Education;
