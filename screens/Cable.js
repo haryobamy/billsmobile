@@ -136,6 +136,7 @@ const Cable = ({ navigation, route }) => {
           width: 60,
           alignItems: "center",
           marginLeft: 60,
+          justifyContent: "center",
         }}
         // onPress={() => console.log(item.description)}
         // onPress={() => navigation.navigate("TopUp", { item })}
@@ -322,8 +323,8 @@ const Cable = ({ navigation, route }) => {
         >
           <View
             style={{
-              height: 120,
-              width: 120,
+              height: 100,
+              width: 100,
 
               marginBottom: 20,
               borderRadius: 20,
@@ -359,7 +360,7 @@ const Cable = ({ navigation, route }) => {
                   color: COLORS.lightGray,
                 }}
               >
-                pay ₦25000
+                pay ₦23000
               </Text>
             </View>
           </View>
